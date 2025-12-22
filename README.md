@@ -18,7 +18,6 @@ user@github:~$ ./current_focus
 user@github:~$ ./status
 > "Coding to understand, not just to execute."
 
-
 📊 System Stats & Analysis
 <a href="https://github.com/anuraghazra/github-readme-stats"> <img align="left" src="https://www.google.com/search?q=https://github-readme-stats.vercel.app/api%3Fusername%3Dghostdd1999%26show_icons%3Dtrue%26theme%3Dradical%26count_private%3Dtrue" alt="Github Stats" /> </a>
 
