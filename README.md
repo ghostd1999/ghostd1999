@@ -1,16 +1,14 @@
-## Hi there 👋
+### 👨‍💻 Terminal Portfolio
 
-<!--
-**ghostd1999/ghostd1999** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+```bash
+user@github:~$ ./whoami
+> 3rd Year B.Sc. Student
+> Linux (Ubuntu) User
 
-Here are some ideas to get you started:
+user@github:~$ ./current_focus
+> Competitive Programming (DSA)
+> AI & Machine Learning (Math-heavy)
+> Python Architecture & Internals
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+user@github:~$ ./status
+> "Coding to understand, not just to execute."
