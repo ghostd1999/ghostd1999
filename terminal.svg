@@ -1,106 +1,91 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1100 420" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1100 450" fill="none">
   <style>
-    /* Background */
     .bg { fill: #0d1117; }
-    
-    /* Typography - larger font */
-    .text { font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 18px; }
+    .text { font-family: 'Courier New', 'SF Mono', 'Fira Code', monospace; font-size: 18px; }
     .prompt { fill: #58a6ff; font-weight: bold; }
     .cmd-text { fill: #ffffff; }
-    .output-line { fill: #c9d1d9; }
-    .quote-line { fill: #56e39f; font-style: italic; }
-    
-    /* Hide everything initially */
-    .cmd1-wrapper, .cmd2-wrapper, .cmd3-wrapper, 
-    .out1-wrapper, .out2-wrapper, .out3-wrapper {
+    .output { fill: #c9d1d9; }
+    .quote { fill: #56e39f; font-style: italic; }
+
+    /* Sequential reveal */
+    .cmd1, .out1, .cmd2, .out2, .cmd3, .out3 {
       opacity: 0;
     }
+    .cmd1 { animation: fadeIn 0.1s forwards 0.2s; }
+    .cmd1 .type { animation: typing 1.2s steps(16) forwards 0.2s; }
+    .out1 { animation: fadeIn 0.3s forwards 1.6s; }
     
-    /* Sequential reveals */
-    .cmd1-wrapper { animation: show 0s forwards 0.2s; }
-    .type1 { animation: type1 1.2s steps(16, end) forwards 0.2s; }
-    .out1-wrapper { animation: show 0s forwards 1.5s; }
+    .cmd2 { animation: fadeIn 0.1s forwards 3.0s; }
+    .cmd2 .type { animation: typing 1.0s steps(14) forwards 3.0s; }
+    .out2 { animation: fadeIn 0.3s forwards 4.2s; }
     
-    .cmd2-wrapper { animation: show 0s forwards 2.8s; }
-    .type2 { animation: type2 1.0s steps(14, end) forwards 2.8s; }
-    .out2-wrapper { animation: show 0s forwards 3.9s; }
-    
-    .cmd3-wrapper { animation: show 0s forwards 5.2s; }
-    .type3 { animation: type3 0.6s steps(7, end) forwards 5.2s; }
-    .out3-wrapper { animation: show 0s forwards 5.9s; }
-    
-    @keyframes show { to { opacity: 1; } }
-    
-    @keyframes type1 { 0% { clip-path: inset(0 100% 0 0); } 100% { clip-path: inset(0 0 0 0); } }
-    @keyframes type2 { 0% { clip-path: inset(0 100% 0 0); } 100% { clip-path: inset(0 0 0 0); } }
-    @keyframes type3 { 0% { clip-path: inset(0 100% 0 0); } 100% { clip-path: inset(0 0 0 0); } }
-    
-    /* Cursor */
-    .cursor { fill: #ffffff; animation: blink 1s step-end infinite; }
-    .cursor1 { animation: blink 0.6s step-end infinite, hideCursor 0s forwards 1.5s; }
-    .cursor2 { animation: blink 0.6s step-end infinite, hideCursor 0s forwards 3.9s; }
+    .cmd3 { animation: fadeIn 0.1s forwards 5.4s; }
+    .cmd3 .type { animation: typing 0.6s steps(7) forwards 5.4s; }
+    .out3 { animation: fadeIn 0.3s forwards 6.2s; }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes typing {
+      0% { clip-path: inset(0 100% 0 0); }
+      100% { clip-path: inset(0 0 0 0); }
+    }
+
+    /* Cursor blink */
+    .cursor {
+      fill: #ffffff;
+      animation: blink 1s step-end infinite;
+    }
+    .cursor1 { animation: blink 0.6s step-end infinite, hide 0s forwards 1.6s; }
+    .cursor2 { animation: blink 0.6s step-end infinite, hide 0s forwards 4.2s; }
     .cursor3 { animation: blink 0.6s step-end infinite; }
-    
-    @keyframes hideCursor { to { visibility: hidden; } }
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-    
+    @keyframes hide { to { visibility: hidden; } }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+
     /* Light mode */
     @media (prefers-color-scheme: light) {
       .bg { fill: #f6f8fa; }
       .prompt { fill: #0969da; }
       .cmd-text { fill: #1f2328; }
-      .output-line { fill: #24292f; }
-      .quote-line { fill: #b02020; }
+      .output { fill: #24292f; }
+      .quote { fill: #b02020; }
       .cursor { fill: #1f2328; }
     }
   </style>
-  
+
   <rect width="100%" height="100%" class="bg" rx="0"/>
-  
-  <g class="text" transform="translate(25, 50)">
-    
-    <!-- ===== COMMAND 1 ===== -->
-    <g class="cmd1-wrapper">
-      <text y="0">
-        <tspan class="prompt">user@github:~$ </tspan>
-      </text>
-      <text y="0" class="cmd-text type1" x="170">./skills --verbose</text>
+
+  <g class="text" transform="translate(25, 45)">
+    <!-- COMMAND 1 -->
+    <g class="cmd1">
+      <text y="0"><tspan class="prompt">user@github:~$ </tspan></text>
+      <text y="0" class="cmd-text type" x="170">./skills --verbose</text>
       <rect x="360" y="-13" width="2" height="20" class="cursor cursor1"/>
     </g>
-    
-    <g class="out1-wrapper">
-      <text y="30" class="output-line">&gt; Languages:  [ Python (Internals), C++, SQL, Bash ]</text>
-      <text y="56" class="output-line">&gt; Tools:      [ Git, VS Code, Vim ]</text>
-      <text y="82" class="output-line">&gt; Core:       [ DSA, Math, Networking, OOPS ]</text>
+    <g class="out1">
+      <text y="30" class="output">&gt; Languages:  [ Python (Internals), C++, SQL, Bash ]</text>
+      <text y="56" class="output">&gt; Tools:      [ Git, VS Code, Vim ]</text>
+      <text y="82" class="output">&gt; Core:       [ DSA, Math, Networking, OOP ]</text>
     </g>
-    
-    <!-- ===== COMMAND 2 ===== -->
-    <g class="cmd2-wrapper" transform="translate(0, 140)">
-      <text y="0">
-        <tspan class="prompt">user@github:~$ </tspan>
-      </text>
-      <text y="0" class="cmd-text type2" x="170">./current_focus</text>
+
+    <!-- COMMAND 2 -->
+    <g class="cmd2" transform="translate(0, 140)">
+      <text y="0"><tspan class="prompt">user@github:~$ </tspan></text>
+      <text y="0" class="cmd-text type" x="170">./current_focus</text>
       <rect x="350" y="-13" width="2" height="20" class="cursor cursor2"/>
     </g>
-    
-    <g class="out2-wrapper">
-      <text y="170" class="output-line">&gt; 1. Competitive Programming (DSA)</text>
-      <text y="196" class="output-line">&gt; 2. AI &amp; Machine Learning</text>
-      <text y="222" class="output-line">&gt; 3. Ethical Hacking &amp; Security</text>
+    <g class="out2">
+      <text y="170" class="output">&gt; 1. Competitive Programming (DSA)</text>
+      <text y="196" class="output">&gt; 2. AI &amp; Machine Learning</text>
+      <text y="222" class="output">&gt; 3. Ethical Hacking &amp; Security</text>
     </g>
-    
-    <!-- ===== COMMAND 3 ===== -->
-    <g class="cmd3-wrapper" transform="translate(0, 280)">
-      <text y="0">
-        <tspan class="prompt">user@github:~$ </tspan>
-      </text>
-      <text y="0" class="cmd-text type3" x="170">./status</text>
+
+    <!-- COMMAND 3 -->
+    <g class="cmd3" transform="translate(0, 280)">
+      <text y="0"><tspan class="prompt">user@github:~$ </tspan></text>
+      <text y="0" class="cmd-text type" x="170">./status</text>
       <rect x="270" y="-13" width="2" height="20" class="cursor cursor3"/>
     </g>
-    
-    <g class="out3-wrapper">
-      <text y="310" class="quote-line">&gt; "Coding to understand, not just to execute."</text>
+    <g class="out3">
+      <text y="310" class="quote">&gt; "Coding to understand, not just to execute."</text>
     </g>
-    
   </g>
 </svg>
