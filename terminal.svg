@@ -7,7 +7,7 @@
     .output { fill: #c9d1d9; }
     .quote { fill: #56e39f; font-style: italic; }
 
-    /* Sequential reveal */
+    /* Sequential reveal of command blocks */
     .cmd1, .out1, .cmd2, .out2, .cmd3, .out3 { opacity: 0; }
     .cmd1 { animation: fadeIn 0.1s forwards 0.2s; }
     .cmd1 .type { animation: typing 1.2s steps(16) forwards 0.2s; }
@@ -27,12 +27,35 @@
       100% { clip-path: inset(0 0 0 0); }
     }
 
-    /* Cursor blink */
-    .cursor { fill: #ffffff; animation: blink 1s step-end infinite; }
-    .cursor1 { animation: blink 0.6s step-end infinite, hide 0s forwards 1.6s; }
-    .cursor2 { animation: blink 0.6s step-end infinite, hide 0s forwards 4.2s; }
-    .cursor3 { animation: blink 0.6s step-end infinite; }
-    @keyframes hide { to { visibility: hidden; } }
+    /* Cursor movement and blink */
+    .cursor {
+      fill: #ffffff;
+      animation: blink 1s step-end infinite;
+    }
+    /* Cursor starts at the beginning of command text and moves to end */
+    .cursor1 {
+      animation: blink 0.6s step-end infinite, moveCursor1 1.2s forwards 0.2s, hideCursor 0s forwards 1.6s;
+    }
+    .cursor2 {
+      animation: blink 0.6s step-end infinite, moveCursor2 1.0s forwards 3.0s, hideCursor 0s forwards 4.2s;
+    }
+    .cursor3 {
+      animation: blink 0.6s step-end infinite, moveCursor3 0.6s forwards 5.4s;
+    }
+
+    @keyframes moveCursor1 {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(190px); }
+    }
+    @keyframes moveCursor2 {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(180px); }
+    }
+    @keyframes moveCursor3 {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(100px); }
+    }
+    @keyframes hideCursor { to { visibility: hidden; } }
     @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
 
     /* Light mode */
@@ -53,7 +76,8 @@
     <g class="cmd1">
       <text y="0"><tspan class="prompt">user@github:~$ </tspan></text>
       <text y="0" class="cmd-text type" x="170">./skills --verbose</text>
-      <rect x="360" y="-13" width="2" height="20" class="cursor cursor1"/>
+      <!-- Cursor starts at x=170 (after prompt) and moves to x=360 -->
+      <rect x="170" y="-13" width="2" height="20" class="cursor cursor1"/>
     </g>
     <g class="out1">
       <text y="30" class="output">&gt; Languages:  [ Python (Internals), C++, SQL, Bash ]</text>
@@ -65,7 +89,7 @@
     <g class="cmd2" transform="translate(0, 140)">
       <text y="0"><tspan class="prompt">user@github:~$ </tspan></text>
       <text y="0" class="cmd-text type" x="170">./current_focus</text>
-      <rect x="350" y="-13" width="2" height="20" class="cursor cursor2"/>
+      <rect x="170" y="-13" width="2" height="20" class="cursor cursor2"/>
     </g>
     <g class="out2">
       <text y="170" class="output">&gt; 1. Competitive Programming (DSA)</text>
@@ -77,7 +101,7 @@
     <g class="cmd3" transform="translate(0, 280)">
       <text y="0"><tspan class="prompt">user@github:~$ </tspan></text>
       <text y="0" class="cmd-text type" x="170">./status</text>
-      <rect x="270" y="-13" width="2" height="20" class="cursor cursor3"/>
+      <rect x="170" y="-13" width="2" height="20" class="cursor cursor3"/>
     </g>
     <g class="out3">
       <text y="310" class="quote">&gt; "Coding to understand, not just to execute."</text>
