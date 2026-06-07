@@ -4,83 +4,88 @@
     .text { font-family: 'Fira Code', 'Courier New', monospace; font-size: 13px; }
     .user { fill: #58a6ff; font-weight: bold; }
     .command { fill: #ffffff; font-weight: normal; }
-    .output { fill: #c9d1d9; opacity: 0; animation: fadeIn 0.1s forwards; }
-    .quote { fill: #56e39f; font-style: italic; opacity: 0; animation: fadeIn 0.1s forwards; }
+    .output { fill: #c9d1d9; }
+    .quote { fill: #56e39f; font-style: italic; }
 
-    /* The Blinking Cursor Element */
-    .cursor { stroke: #ffffff; stroke-width: 2; opacity: 0; }
-
-    /* Typing Steps & Timings using standard SVG element translation */
-    .type-skills { animation: revealText 1.2s steps(17) 0.2s forwards; }
-    .cursor-skills { animation: moveCursorSkills 1.2s steps(17) 0.2s forwards, blink 0.5s step-end infinite; }
-    
-    .type-focus { animation: revealText 1s steps(15) 2.4s forwards; }
-    .cursor-focus { animation: moveCursorFocus 1s steps(15) 2.4s forwards, blink 0.5s step-end infinite; }
-    
-    .type-status { animation: revealText 0.6s steps(8) 4.4s forwards; }
-    .cursor-status { animation: moveCursorStatus 0.6s steps(8) 4.4s forwards, blink 0.5s step-end infinite; }
-
-    /* Output Timing Triggers */
-    .out-skills { animation-delay: 1.4s; }
-    .out-focus { animation-delay: 3.4s; }
-    .out-status { animation-delay: 5.0s; }
-
-    /* Standard Core Keyframes */
-    @keyframes revealText { from { width: 0; } to { width: 500px; } }
-    @keyframes fadeIn { to { opacity: 1; } }
-    @keyframes blink { from, to { opacity: 0; } 50% { opacity: 1; } }
-
-    /* Moving Cursor Keyframes mapped to line pixel widths */
-    @keyframes moveCursorSkills { from { transform: translateX(0px); } to { transform: translateX(144px); } }
-    @keyframes moveCursorFocus { from { transform: translateX(0px); } to { transform: translateX(120px); } }
-    @keyframes moveCursorStatus { from { transform: translateX(0px); } to { transform: translateX(72px); } }
-
-    /* Light Mode Settings */
+    /* Auto Light/Dark Mode handling */
     @media (prefers-color-scheme: light) {
       .bg { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1px; }
       .user { fill: #0969da; }
       .command { fill: #1f2328; }
       .output { fill: #24292f; }
       .quote { fill: #b02020; }
-      .cursor { stroke: #1f2328; }
     }
   </style>
 
-  <defs>
-    <clipPath id="mask-skills"><rect x="115" y="-15" width="0" height="20" class="type-skills"/></clipPath>
-    <clipPath id="mask-focus"><rect x="115" y="80" width="0" height="20" class="type-focus"/></clipPath>
-    <clipPath id="mask-status"><rect x="115" y="175" width="0" height="20" class="type-status"/></clipPath>
-  </defs>
-  
   <rect width="100%" height="280" class="bg"/>
   
   <g class="text" transform="translate(20, 35)">
-    <text y="0" class="user">user@github:~$ </text>
-    <g clip-path="url(#mask-skills)">
-      <text x="115" y="0" class="command">./skills --verbose</text>
+    <text y="0">
+      <tspan class="user">user@github:~$ </tspan>
+      <tspan class="command">
+        <animate attributeName="visibility" from="hidden" to="visible" begin="0.2s" fill="freeze"/>
+        ./skills --verbose
+      </tspan>
+    </text>
+    
+    <text x="265" y="0" fill="#ffffff">
+      <animate attributeName="opacity" values="1;0;1" dur="0.6s" repeatCount="indefinite" begin="0.2s"/>
+      <animate attributeName="visibility" from="visible" to="hidden" begin="1.4s" fill="freeze"/>
+      |
+    </text>
+
+    <g class="output">
+      <animate attributeName="visibility" from="hidden" to="visible" begin="1.4s" fill="freeze"/>
+      <text y="22">&gt; Languages:  [ Python (Internals), C++, SQL, Bash ]</text>
+      <text y="40">&gt; Tools:      [ Git, VS Code, Vim ]</text>
+      <text y="58">&gt; Core:       [ DSA, Math, Networking, OOPS ]</text>
     </g>
-    <line x1="115" y1="-12" x2="115" y2="2" class="cursor cursor-skills" />
     
-    <text y="22" class="output out-skills">&gt; Languages:  [ Python (Internals), C++, SQL, Bash ]</text>
-    <text y="40" class="output out-skills">&gt; Tools:      [ Git, VS Code, Vim ]</text>
-    <text y="58" class="output out-skills">&gt; Core:       [ DSA, Math, Networking, OOPS ]</text>
-    
-    <text y="95" class="user">user@github:~$ </text>
-    <g clip-path="url(#mask-focus)">
-      <text x="115" y="95" class="command">./current_focus</text>
+    <g>
+      <animate attributeName="visibility" from="hidden" to="visible" begin="1.6s" fill="freeze"/>
+      <text y="95">
+        <tspan class="user">user@github:~$ </tspan>
+        <tspan class="command">
+          <animate attributeName="visibility" from="hidden" to="visible" begin="1.8s" fill="freeze"/>
+          ./current_focus
+        </tspan>
+      </text>
     </g>
-    <line x1="115" y1="83" x2="115" y2="97" class="cursor cursor-focus" />
     
-    <text y="117" class="output out-focus">&gt; 1. Competitive Programming (DSA)</text>
-    <text y="135" class="output out-focus">&gt; 2. AI &amp; Machine Learning</text>
-    <text y="153" class="output out-focus">&gt; 3. Ethical Hacking &amp; Security</text>
-    
-    <text y="190" class="user">user@github:~$ </text>
-    <g clip-path="url(#mask-status)">
-      <text x="115" y="190" class="command">./status</text>
+    <text x="235" y="95" fill="#ffffff">
+      <animate attributeName="visibility" from="hidden" to="visible" begin="1.8s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0;1" dur="0.6s" repeatCount="indefinite" begin="1.8s"/>
+      <animate attributeName="visibility" from="visible" to="hidden" begin="2.8s" fill="freeze"/>
+      |
+    </text>
+
+    <g class="output">
+      <animate attributeName="visibility" from="hidden" to="visible" begin="2.8s" fill="freeze"/>
+      <text y="117">&gt; 1. Competitive Programming (DSA)</text>
+      <text y="135">&gt; 2. AI &amp; Machine Learning</text>
+      <text y="153">&gt; 3. Ethical Hacking &amp; Security</text>
     </g>
-    <line x1="115" y1="178" x2="115" y2="192" class="cursor cursor-status" />
     
-    <text y="212" class="quote out-status">&gt; "Coding to understand, not just to execute."</text>
+    <g>
+      <animate attributeName="visibility" from="hidden" to="visible" begin="3.0s" fill="freeze"/>
+      <text y="190">
+        <tspan class="user">user@github:~$ </tspan>
+        <tspan class="command">
+          <animate attributeName="visibility" from="hidden" to="visible" begin="3.2s" fill="freeze"/>
+          ./status
+        </tspan>
+      </text>
+    </g>
+    
+    <text x="180" y="190" fill="#ffffff">
+      <animate attributeName="visibility" from="hidden" to="visible" begin="3.2s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0;1" dur="0.6s" repeatCount="indefinite" begin="3.2s"/>
+      |
+    </text>
+
+    <g class="quote">
+      <animate attributeName="visibility" from="hidden" to="visible" begin="4.0s" fill="freeze"/>
+      <text y="212">&gt; "Coding to understand, not just to execute."</text>
+    </g>
   </g>
 </svg>
