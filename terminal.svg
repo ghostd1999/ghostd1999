@@ -7,124 +7,80 @@
     .output { fill: #c9d1d9; opacity: 0; animation: fadeIn 0.1s forwards; }
     .quote { fill: #56e39f; font-style: italic; opacity: 0; animation: fadeIn 0.1s forwards; }
 
-    /* Cursor & Covering Box Style */
-    .cursor { fill: #0d1117; stroke: #ffffff; stroke-width: 2; }
+    /* The Blinking Cursor Element */
+    .cursor { stroke: #ffffff; stroke-width: 2; opacity: 0; }
 
-    /* Typing Animations (Moving the cover box to reveal text) */
-    .type-skills { animation: openBox 1.2s steps(17) 0.2s forwards, blink 0.5s step-end infinite; width: 160px; }
-    .type-focus { animation: openBox 1s steps(15) 2.4s forwards, blink 0.5s step-end infinite; width: 140px; }
-    .type-status { animation: openBox 0.6s steps(8) 4.4s forwards, blink 0.5s step-end infinite; width: 90px; }
+    /* Typing Steps & Timings using standard SVG element translation */
+    .type-skills { animation: revealText 1.2s steps(17) 0.2s forwards; }
+    .cursor-skills { animation: moveCursorSkills 1.2s steps(17) 0.2s forwards, blink 0.5s step-end infinite; }
+    
+    .type-focus { animation: revealText 1s steps(15) 2.4s forwards; }
+    .cursor-focus { animation: moveCursorFocus 1s steps(15) 2.4s forwards, blink 0.5s step-end infinite; }
+    
+    .type-status { animation: revealText 0.6s steps(8) 4.4s forwards; }
+    .cursor-status { animation: moveCursorStatus 0.6s steps(8) 4.4s forwards, blink 0.5s step-end infinite; }
 
-    /* Output Reveal Timings matched perfectly to typing finish */
+    /* Output Timing Triggers */
     .out-skills { animation-delay: 1.4s; }
     .out-focus { animation-delay: 3.4s; }
     .out-status { animation-delay: 5.0s; }
 
-    @keyframes openBox {
-      to { transform: translateX(100%); width: 0px; display: none; stroke: transparent; }
-    }
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-    @keyframes blink {
-      from, to { stroke-color: transparent; }
-      50% { stroke: #ffffff; }
-    }
+    /* Standard Core Keyframes */
+    @keyframes revealText { from { width: 0; } to { width: 500px; } }
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes blink { from, to { opacity: 0; } 50% { opacity: 1; } }
 
-    /* Auto Light/Dark Mode handling */
+    /* Moving Cursor Keyframes mapped to line pixel widths */
+    @keyframes moveCursorSkills { from { transform: translateX(0px); } to { transform: translateX(144px); } }
+    @keyframes moveCursorFocus { from { transform: translateX(0px); } to { transform: translateX(120px); } }
+    @keyframes moveCursorStatus { from { transform: translateX(0px); } to { transform: translateX(72px); } }
+
+    /* Light Mode Settings */
     @media (prefers-color-scheme: light) {
       .bg { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1px; }
       .user { fill: #0969da; }
       .command { fill: #1f2328; }
       .output { fill: #24292f; }
       .quote { fill: #b02020; }
-      .cursor { fill: #f6f8fa; stroke: #1f2328; }
-      @keyframes blink {
-        50% { stroke: #1f2328; }
-      }
+      .cursor { stroke: #1f2328; }
     }
   </style>
+
+  <defs>
+    <clipPath id="mask-skills"><rect x="115" y="-15" width="0" height="20" class="type-skills"/></clipPath>
+    <clipPath id="mask-focus"><rect x="115" y="80" width="0" height="20" class="type-focus"/></clipPath>
+    <clipPath id="mask-status"><rect x="115" y="175" width="0" height="20" class="type-status"/></clipPath>
+  </defs>
   
   <rect width="100%" height="280" class="bg"/>
   
   <g class="text" transform="translate(20, 35)">
-    <g>
-      <text y="0">
-        <tspan class="user">user@github:~$ </tspan>
-        <tspan class="command">./skills --verbose</tspan>
-      </text>
-      <rect x="115" y="-12" height="16" class="cursor type-skills" />
+    <text y="0" class="user">user@github:~$ </text>
+    <g clip-path="url(#mask-skills)">
+      <text x="115" y="0" class="command">./skills --verbose</text>
     </g>
+    <line x1="115" y1="-12" x2="115" y2="2" class="cursor cursor-skills" />
+    
     <text y="22" class="output out-skills">&gt; Languages:  [ Python (Internals), C++, SQL, Bash ]</text>
     <text y="40" class="output out-skills">&gt; Tools:      [ Git, VS Code, Vim ]</text>
     <text y="58" class="output out-skills">&gt; Core:       [ DSA, Math, Networking, OOPS ]</text>
     
-    <g transform="translate(0, 95)">
-      <text y="0">
-        <tspan class="user">user@github:~$ </tspan>
-        <tspan class="command">./current_focus</tspan>
-      </text>
-      <rect x="115" y="-12" height="16" class="cursor type-focus" />
+    <text y="95" class="user">user@github:~$ </text>
+    <g clip-path="url(#mask-focus)">
+      <text x="115" y="95" class="command">./current_focus</text>
     </g>
+    <line x1="115" y1="83" x2="115" y2="97" class="cursor cursor-focus" />
+    
     <text y="117" class="output out-focus">&gt; 1. Competitive Programming (DSA)</text>
     <text y="135" class="output out-focus">&gt; 2. AI &amp; Machine Learning</text>
     <text y="153" class="output out-focus">&gt; 3. Ethical Hacking &amp; Security</text>
     
-    <g transform="translate(0, 190)">
-      <text y="0">
-        <tspan class="user">user@github:~$ </tspan>
-        <tspan class="command">./status</tspan>
-      </text>
-      <rect x="115" y="-12" height="16" class="cursor type-status" />
+    <text y="190" class="user">user@github:~$ </text>
+    <g clip-path="url(#mask-status)">
+      <text x="115" y="190" class="command">./status</text>
     </g>
+    <line x1="115" y1="178" x2="115" y2="192" class="cursor cursor-status" />
+    
     <text y="212" class="quote out-status">&gt; "Coding to understand, not just to execute."</text>
   </g>
 </svg>
-
-
-
-<!-- <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="280" viewBox="0 0 650 280" fill="none">
-  <style>
-    .bg { fill: #0d1117; rx: 8px; }
-    .text { font-family: 'Fira Code', 'Courier New', monospace; font-size: 13px; }
-    .user { fill: #58a6ff; font-weight: bold; }
-    .command { fill: #79c0ff; }
-    .output { fill: #c9d1d9; }
-    .quote { fill: #56e39f; font-style: italic; }
-
-    /* Auto Light/Dark Mode handling inside SVG */
-    @media (prefers-color-scheme: light) {
-      .bg { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1px; }
-      .user { fill: #0969da; }
-      .command { fill: #1a7f37; }
-      .output { fill: #24292f; }
-      .quote { fill: #b02020; }
-    }
-  </style>
-  
-  <rect width="100%" height="280" class="bg"/>
-  
-  <g class="text" transform="translate(20, 35)">
-    <text y="0">
-      <tspan class="user">user@github:~$ </tspan>
-      <tspan class="command">./skills --verbose</tspan>
-    </text>
-    <text y="22" class="output">&gt; Languages:  [ Python (Internals), C++, SQL, Bash ]</text>
-    <text y="40" class="output">&gt; Tools:      [ Git, VS Code, Vim ]</text>
-    <text y="58" class="output">&gt; Core:       [ DSA, Math, Networking, OOPS ]</text>
-    
-    <text y="95">
-      <tspan class="user">user@github:~$ </tspan>
-      <tspan class="command">./current_focus</tspan>
-    </text>
-    <text y="117" class="output">&gt; 1. Competitive Programming (DSA)</text>
-    <text y="135" class="output">&gt; 2. AI &amp; Machine Learning</text>
-    <text y="153" class="output">&gt; 3. Ethical Hacking &amp; Security</text>
-    
-    <text y="190">
-      <tspan class="user">user@github:~$ </tspan>
-      <tspan class="command">./status</tspan>
-    </text>
-    <text y="212" class="quote">&gt; "Coding to understand, not just to execute."</text>
-  </g>
-</svg> -->
