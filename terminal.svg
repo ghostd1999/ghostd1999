@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1100 520" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1100 480" fill="none">
   <style>
     .bg { fill: #0d1117; }
     .text { font-family: 'Courier New', 'SF Mono', 'Fira Code', monospace; font-size: 18px; }
@@ -6,10 +6,10 @@
     .cmd-text { fill: #ffffff; }
     .output { fill: #c9d1d9; }
     .quote { fill: #56e39f; font-style: italic; }
-    .cmatrix-block { fill: #00ff41; opacity: 0.5; font-family: monospace; font-size: 14px; }
+    .cmatric { fill: #c9d1d9; opacity: 0.5; }
 
     /* Sequential reveal */
-    .cmd1, .out1, .cmd2, .out2, .cmd3, .out3, .cmatrix-group { opacity: 0; }
+    .cmd1, .out1, .cmd2, .out2, .cmd3, .out3, .cmatric-line { opacity: 0; }
     .cmd1 { animation: fadeIn 0.1s forwards 0.2s; }
     .cmd1 .type { animation: typing 1.2s steps(16) forwards 0.2s; }
     .out1 { animation: fadeIn 0.3s forwards 1.6s; }
@@ -22,7 +22,7 @@
     .cmd3 .type { animation: typing 0.7s steps(8) forwards 5.4s; }
     .out3 { animation: fadeIn 0.3s forwards 6.2s; }
     
-    .cmatrix-group { animation: fadeIn 0.5s forwards 6.6s; }
+    .cmatric-line { animation: fadeIn 0.3s forwards 6.6s; }
 
     @keyframes fadeIn { to { opacity: 1; } }
     @keyframes typing {
@@ -37,7 +37,7 @@
       .cmd-text { fill: #1f2328; }
       .output { fill: #24292f; }
       .quote { fill: #b02020; }
-      .cmatrix-block { fill: #008000; opacity: 0.5; }
+      .cmatric { fill: #24292f; opacity: 0.5; }
     }
   </style>
 
@@ -75,14 +75,6 @@
       <text y="310" class="quote">&gt; "Coding to understand, not just to execute."</text>
     </g>
 
-    <!-- CMATRIX STYLE BLOCK (static, half opacity, green matrix aesthetic) -->
-    <g class="cmatrix-group" transform="translate(0, 370)">
-      <text y="0" class="cmatrix-block">&gt; cmatrix --style=matrix</text>
-      <text y="20" class="cmatrix-block">  01001101 01100001 01110100 01110010 01101001 01111000</text>
-      <text y="38" class="cmatrix-block">  00110010 00110001 00110000 00110001 00100000 01100110</text>
-      <text y="56" class="cmatrix-block">  01100001 01101100 01101100 01101001 01101110 01100111</text>
-      <text y="74" class="cmatrix-block">  01000011 01001111 01000100 01000101 00100000 01010010</text>
-      <text y="92" class="cmatrix-block">  01000001 01001001 01001110 00100000 00111100 00100011</text>
-    </g>
+   
   </g>
 </svg>
