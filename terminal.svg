@@ -4,8 +4,17 @@
     .text { font-family: 'Fira Code', 'Courier New', monospace; font-size: 13px; }
     .user { fill: #58a6ff; font-weight: bold; }
     .command { fill: #ffffff; font-weight: normal; }
-    .output { fill: #c9d1d9; }
-    .quote { fill: #56e39f; font-style: italic; }
+    .output { fill: #c9d1d9; opacity: 0; animation: fadeIn 0.1s forwards; }
+    .quote { fill: #56e39f; font-style: italic; opacity: 0; animation: fadeIn 0.1s forwards; }
+
+    /* Output Reveal Timings matched perfectly to typing finish */
+    .out-skills { animation-delay: 1.2s; }
+    .out-focus { animation-delay: 3.2s; }
+    .out-status { animation-delay: 4.8s; }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
 
     /* Auto Light/Dark Mode handling */
     @media (prefers-color-scheme: light) {
@@ -23,68 +32,66 @@
     <text y="0">
       <tspan class="user">user@github:~$ </tspan>
       <tspan class="command">
-        <animate attributeName="visibility" from="hidden" to="visible" begin="0.2s" fill="freeze"/>
         ./skills --verbose
+        <animate attributeName="dx" from="-300" to="0" dur="1s" begin="0.2s" fill="freeze"/>
       </tspan>
     </text>
     
-    <text x="265" y="0" fill="#ffffff">
-      <animate attributeName="opacity" values="1;0;1" dur="0.6s" repeatCount="indefinite" begin="0.2s"/>
-      <animate attributeName="visibility" from="visible" to="hidden" begin="1.4s" fill="freeze"/>
+    <text y="0" fill="#ffffff">
       |
+      <animate attributeName="x" from="115" to="260" dur="1s" begin="0.2s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0;1" dur="0.5s" repeatCount="indefinite"/>
+      <animate attributeName="visibility" from="visible" to="hidden" begin="1.2s" fill="freeze"/>
     </text>
 
-    <g class="output">
-      <animate attributeName="visibility" from="hidden" to="visible" begin="1.4s" fill="freeze"/>
+    <g class="output out-skills">
       <text y="22">&gt; Languages:  [ Python (Internals), C++, SQL, Bash ]</text>
       <text y="40">&gt; Tools:      [ Git, VS Code, Vim ]</text>
       <text y="58">&gt; Core:       [ DSA, Math, Networking, OOPS ]</text>
     </g>
     
     <g>
-      <animate attributeName="visibility" from="hidden" to="visible" begin="1.6s" fill="freeze"/>
+      <animate attributeName="opacity" from="0" to="1" dur="0.1s" begin="2.0s" fill="freeze"/>
       <text y="95">
         <tspan class="user">user@github:~$ </tspan>
         <tspan class="command">
-          <animate attributeName="visibility" from="hidden" to="visible" begin="1.8s" fill="freeze"/>
           ./current_focus
+          <animate attributeName="dx" from="-300" to="0" dur="1s" begin="2.0s" fill="freeze"/>
         </tspan>
       </text>
+      
+      <text y="95" fill="#ffffff">
+        |
+        <animate attributeName="x" from="115" to="235" dur="1s" begin="2.0s" fill="freeze"/>
+        <animate attributeName="opacity" values="1;0;1" dur="0.5s" repeatCount="indefinite"/>
+        <animate attributeName="visibility" from="visible" to="hidden" begin="3.1s" fill="freeze"/>
+      </text>
     </g>
-    
-    <text x="235" y="95" fill="#ffffff">
-      <animate attributeName="visibility" from="hidden" to="visible" begin="1.8s" fill="freeze"/>
-      <animate attributeName="opacity" values="1;0;1" dur="0.6s" repeatCount="indefinite" begin="1.8s"/>
-      <animate attributeName="visibility" from="visible" to="hidden" begin="2.8s" fill="freeze"/>
-      |
-    </text>
 
-    <g class="output">
-      <animate attributeName="visibility" from="hidden" to="visible" begin="2.8s" fill="freeze"/>
+    <g class="output out-focus">
       <text y="117">&gt; 1. Competitive Programming (DSA)</text>
       <text y="135">&gt; 2. AI &amp; Machine Learning</text>
       <text y="153">&gt; 3. Ethical Hacking &amp; Security</text>
     </g>
     
     <g>
-      <animate attributeName="visibility" from="hidden" to="visible" begin="3.0s" fill="freeze"/>
+      <animate attributeName="opacity" from="0" to="1" dur="0.1s" begin="3.8s" fill="freeze"/>
       <text y="190">
         <tspan class="user">user@github:~$ </tspan>
         <tspan class="command">
-          <animate attributeName="visibility" from="hidden" to="visible" begin="3.2s" fill="freeze"/>
           ./status
+          <animate attributeName="dx" from="-100" to="0" dur="0.6s" begin="3.8s" fill="freeze"/>
         </tspan>
       </text>
+      
+      <text y="190" fill="#ffffff">
+        |
+        <animate attributeName="x" from="115" to="175" dur="0.6s" begin="3.8s" fill="freeze"/>
+        <animate attributeName="opacity" values="1;0;1" dur="0.5s" repeatCount="indefinite"/>
+      </text>
     </g>
-    
-    <text x="180" y="190" fill="#ffffff">
-      <animate attributeName="visibility" from="hidden" to="visible" begin="3.2s" fill="freeze"/>
-      <animate attributeName="opacity" values="1;0;1" dur="0.6s" repeatCount="indefinite" begin="3.2s"/>
-      |
-    </text>
 
-    <g class="quote">
-      <animate attributeName="visibility" from="hidden" to="visible" begin="4.0s" fill="freeze"/>
+    <g class="quote out-status">
       <text y="212">&gt; "Coding to understand, not just to execute."</text>
     </g>
   </g>
