@@ -100,7 +100,7 @@
     <!-- COMMAND 3 -->
     <g class="cmd3" transform="translate(0, 280)">
       <text y="0"><tspan class="prompt">user@github:~$ </tspan></text>
-      <text y="0" class="cmd-text type" x="170">./status</text>
+      <text y="0" class="cmd-text type" x="170">./status    </text>
       <rect x="170" y="-13" width="2" height="20" class="cursor cursor3"/>
     </g>
     <g class="out3">
