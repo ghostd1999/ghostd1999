@@ -18,7 +18,7 @@
     .out2 { animation: fadeIn 0.3s forwards 4.2s; }
     
     .cmd3 { animation: fadeIn 0.1s forwards 5.4s; }
-    .cmd3 .type { animation: typing 0.6s steps(7) forwards 5.4s; }
+    .cmd3 .type { animation: typing 0.7s steps(8) forwards 5.4s; }  /* 8 characters for "./status" */
     .out3 { animation: fadeIn 0.3s forwards 6.2s; }
 
     @keyframes fadeIn { to { opacity: 1; } }
@@ -32,7 +32,6 @@
       fill: #ffffff;
       animation: blink 1s step-end infinite;
     }
-    /* Cursor starts at the beginning of command text and moves to end */
     .cursor1 {
       animation: blink 0.6s step-end infinite, moveCursor1 1.2s forwards 0.2s, hideCursor 0s forwards 1.6s;
     }
@@ -40,7 +39,7 @@
       animation: blink 0.6s step-end infinite, moveCursor2 1.0s forwards 3.0s, hideCursor 0s forwards 4.2s;
     }
     .cursor3 {
-      animation: blink 0.6s step-end infinite, moveCursor3 0.6s forwards 5.4s;
+      animation: blink 0.6s step-end infinite, moveCursor3 0.7s forwards 5.4s;
     }
 
     @keyframes moveCursor1 {
@@ -53,7 +52,7 @@
     }
     @keyframes moveCursor3 {
       0% { transform: translateX(0); }
-      100% { transform: translateX(100px); }
+      100% { transform: translateX(110px); }  /* "./status" is 8 chars, moves ~110px */
     }
     @keyframes hideCursor { to { visibility: hidden; } }
     @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
@@ -76,7 +75,6 @@
     <g class="cmd1">
       <text y="0"><tspan class="prompt">user@github:~$ </tspan></text>
       <text y="0" class="cmd-text type" x="170">./skills --verbose</text>
-      <!-- Cursor starts at x=170 (after prompt) and moves to x=360 -->
       <rect x="170" y="-13" width="2" height="20" class="cursor cursor1"/>
     </g>
     <g class="out1">
@@ -97,10 +95,10 @@
       <text y="222" class="output">&gt; 3. Ethical Hacking &amp; Security</text>
     </g>
 
-    <!-- COMMAND 3 -->
+    <!-- COMMAND 3 - fixed "./status" (was missing 's') -->
     <g class="cmd3" transform="translate(0, 280)">
       <text y="0"><tspan class="prompt">user@github:~$ </tspan></text>
-      <text y="0" class="cmd-text type" x="170">./status    </text>
+      <text y="0" class="cmd-text type" x="170">./status</text>
       <rect x="170" y="-13" width="2" height="20" class="cursor cursor3"/>
     </g>
     <g class="out3">
