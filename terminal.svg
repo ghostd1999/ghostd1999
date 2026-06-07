@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1000 360" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1100 420" fill="none">
   <style>
     /* Background */
     .bg { fill: #0d1117; }
     
-    /* Typography */
-    .text { font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 15px; }
+    /* Typography - larger font */
+    .text { font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 18px; }
     .prompt { fill: #58a6ff; font-weight: bold; }
     .cmd-text { fill: #ffffff; }
     .output-line { fill: #c9d1d9; }
@@ -57,49 +57,49 @@
   
   <rect width="100%" height="100%" class="bg" rx="0"/>
   
-  <g class="text" transform="translate(25, 45)">
+  <g class="text" transform="translate(25, 50)">
     
     <!-- ===== COMMAND 1 ===== -->
     <g class="cmd1-wrapper">
       <text y="0">
         <tspan class="prompt">user@github:~$ </tspan>
       </text>
-      <text y="0" class="cmd-text type1" x="150">./skills --verbose</text>
-      <rect x="320" y="-11" width="2" height="16" class="cursor cursor1"/>
+      <text y="0" class="cmd-text type1" x="170">./skills --verbose</text>
+      <rect x="360" y="-13" width="2" height="20" class="cursor cursor1"/>
     </g>
     
     <g class="out1-wrapper">
-      <text y="26" class="output-line">&gt; Languages:  [ Python (Internals), C++, SQL, Bash ]</text>
-      <text y="48" class="output-line">&gt; Tools:      [ Git, VS Code, Vim ]</text>
-      <text y="70" class="output-line">&gt; Core:       [ DSA, Math, Networking, OOPS ]</text>
+      <text y="30" class="output-line">&gt; Languages:  [ Python (Internals), C++, SQL, Bash ]</text>
+      <text y="56" class="output-line">&gt; Tools:      [ Git, VS Code, Vim ]</text>
+      <text y="82" class="output-line">&gt; Core:       [ DSA, Math, Networking, OOPS ]</text>
     </g>
     
     <!-- ===== COMMAND 2 ===== -->
-    <g class="cmd2-wrapper" transform="translate(0, 120)">
+    <g class="cmd2-wrapper" transform="translate(0, 140)">
       <text y="0">
         <tspan class="prompt">user@github:~$ </tspan>
       </text>
-      <text y="0" class="cmd-text type2" x="150">./current_focus</text>
-      <rect x="310" y="-11" width="2" height="16" class="cursor cursor2"/>
+      <text y="0" class="cmd-text type2" x="170">./current_focus</text>
+      <rect x="350" y="-13" width="2" height="20" class="cursor cursor2"/>
     </g>
     
     <g class="out2-wrapper">
-      <text y="146" class="output-line">&gt; 1. Competitive Programming (DSA)</text>
-      <text y="168" class="output-line">&gt; 2. AI &amp; Machine Learning</text>
-      <text y="190" class="output-line">&gt; 3. Ethical Hacking &amp; Security</text>
+      <text y="170" class="output-line">&gt; 1. Competitive Programming (DSA)</text>
+      <text y="196" class="output-line">&gt; 2. AI &amp; Machine Learning</text>
+      <text y="222" class="output-line">&gt; 3. Ethical Hacking &amp; Security</text>
     </g>
     
     <!-- ===== COMMAND 3 ===== -->
-    <g class="cmd3-wrapper" transform="translate(0, 240)">
+    <g class="cmd3-wrapper" transform="translate(0, 280)">
       <text y="0">
         <tspan class="prompt">user@github:~$ </tspan>
       </text>
-      <text y="0" class="cmd-text type3" x="150">./status</text>
-      <rect x="245" y="-11" width="2" height="16" class="cursor cursor3"/>
+      <text y="0" class="cmd-text type3" x="170">./status</text>
+      <rect x="270" y="-13" width="2" height="20" class="cursor cursor3"/>
     </g>
     
     <g class="out3-wrapper">
-      <text y="266" class="quote-line">&gt; "Coding to understand, not just to execute."</text>
+      <text y="310" class="quote-line">&gt; "Coding to understand, not just to execute."</text>
     </g>
     
   </g>
