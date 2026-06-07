@@ -8,9 +8,7 @@
     .quote { fill: #56e39f; font-style: italic; }
 
     /* Sequential reveal */
-    .cmd1, .out1, .cmd2, .out2, .cmd3, .out3 {
-      opacity: 0;
-    }
+    .cmd1, .out1, .cmd2, .out2, .cmd3, .out3 { opacity: 0; }
     .cmd1 { animation: fadeIn 0.1s forwards 0.2s; }
     .cmd1 .type { animation: typing 1.2s steps(16) forwards 0.2s; }
     .out1 { animation: fadeIn 0.3s forwards 1.6s; }
@@ -30,10 +28,7 @@
     }
 
     /* Cursor blink */
-    .cursor {
-      fill: #ffffff;
-      animation: blink 1s step-end infinite;
-    }
+    .cursor { fill: #ffffff; animation: blink 1s step-end infinite; }
     .cursor1 { animation: blink 0.6s step-end infinite, hide 0s forwards 1.6s; }
     .cursor2 { animation: blink 0.6s step-end infinite, hide 0s forwards 4.2s; }
     .cursor3 { animation: blink 0.6s step-end infinite; }
