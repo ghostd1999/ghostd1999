@@ -1,27 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1100 340" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1000 340" fill="none">
   <style>
-    /* Terminal background */
+    /* Background */
     .bg { fill: #0d1117; }
     
     /* Typography */
-    .text { font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 16px; }
+    .text { font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 15px; }
     .prompt { fill: #58a6ff; font-weight: bold; }
     .cmd-text { fill: #ffffff; }
-    .output-text { fill: #c9d1d9; }
-    .quote-text { fill: #56e39f; font-style: italic; }
+    .output-line { fill: #c9d1d9; }
+    .quote-line { fill: #56e39f; font-style: italic; }
     
-    /* Animation timings */
-    .cmd1 { animation: revealCmd 0s forwards 0.2s, type1 1.2s steps(16, end) forwards 0.2s; }
-    .out1 { animation: fadeIn 0.2s forwards 1.5s; }
-    .cmd2 { animation: revealCmd 0s forwards 2.8s, type2 1.0s steps(14, end) forwards 2.8s; }
-    .out2 { animation: fadeIn 0.2s forwards 3.9s; }
-    .cmd3 { animation: revealCmd 0s forwards 5.2s, type3 0.6s steps(7, end) forwards 5.2s; }
-    .out3 { animation: fadeIn 0.2s forwards 5.9s; }
+    /* Initially hide command text (but prompt stays visible) */
+    .cmd1-text, .cmd2-text, .cmd3-text {
+      opacity: 0;
+    }
     
-    @keyframes revealCmd { to { opacity: 1; } }
+    /* Typing animations */
+    .type1 { animation: showCmd 0s forwards 0.2s, type1 1.2s steps(16, end) forwards 0.2s; }
+    .type2 { animation: showCmd 0s forwards 2.8s, type2 1.0s steps(14, end) forwards 2.8s; }
+    .type3 { animation: showCmd 0s forwards 4.8s, type3 0.6s steps(7, end) forwards 4.8s; }
+    
+    @keyframes showCmd { to { opacity: 1; } }
     @keyframes type1 { 0% { clip-path: inset(0 100% 0 0); } 100% { clip-path: inset(0 0 0 0); } }
     @keyframes type2 { 0% { clip-path: inset(0 100% 0 0); } 100% { clip-path: inset(0 0 0 0); } }
     @keyframes type3 { 0% { clip-path: inset(0 100% 0 0); } 100% { clip-path: inset(0 0 0 0); } }
+    
+    /* Output fade-ins */
+    .out1 { animation: fadeIn 0.2s forwards 1.5s; }
+    .out2 { animation: fadeIn 0.2s forwards 3.9s; }
+    .out3 { animation: fadeIn 0.2s forwards 5.5s; }
+    
     @keyframes fadeIn { to { opacity: 1; } }
     
     /* Cursor */
@@ -29,69 +37,77 @@
     .cursor1 { animation: blink 0.6s step-end infinite, hideCursor 0s forwards 1.5s; }
     .cursor2 { animation: blink 0.6s step-end infinite, hideCursor 0s forwards 3.9s; }
     .cursor3 { animation: blink 0.6s step-end infinite; }
+    
     @keyframes hideCursor { to { visibility: hidden; } }
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     
-    /* Light mode override */
+    /* Hide outputs initially */
+    .out-group { opacity: 0; }
+    
+    /* Light mode */
     @media (prefers-color-scheme: light) {
       .bg { fill: #f6f8fa; }
       .prompt { fill: #0969da; }
       .cmd-text { fill: #1f2328; }
-      .output-text { fill: #24292f; }
-      .quote-text { fill: #b02020; }
+      .output-line { fill: #24292f; }
+      .quote-line { fill: #b02020; }
       .cursor { fill: #1f2328; }
     }
-    
-    /* Initially hide command groups and outputs */
-    .cmd-group, .out-group { opacity: 0; }
   </style>
-
-  <!-- Background -->
+  
   <rect width="100%" height="100%" class="bg" rx="0"/>
-
+  
   <g class="text" transform="translate(25, 45)">
     
-    <!-- ========== COMMAND 1 ========== -->
-    <g class="cmd-group cmd1">
-      <text y="0">
-        <tspan class="prompt">user@github:~$ </tspan>
-      </text>
-      <text y="0" class="cmd-text" x="150">./skills --verbose</text>
-      <rect x="320" y="-12" width="2" height="16" class="cursor cursor1"/>
-    </g>
+    <!-- ===== COMMAND 1 ===== -->
+    <!-- Static prompt -->
+    <text y="0">
+      <tspan class="prompt">user@github:~$ </tspan>
+    </text>
+    <!-- Typing command text -->
+    <text y="0" class="cmd-text cmd1-text type1" x="150">./skills --verbose</text>
+    <!-- Blinking cursor during typing -->
+    <rect x="320" y="-11" width="2" height="16" class="cursor cursor1"/>
     
+    <!-- Output 1 (fades in after typing) -->
     <g class="out-group out1">
-      <text y="26" class="output-text">> Languages:  [ Python (Internals), C++, SQL, Bash ]</text>
-      <text y="48" class="output-text">> Tools:      [ Git, VS Code, Vim ]</text>
-      <text y="70" class="output-text">> Core:       [ DSA, Math, Networking, OOPS ]</text>
+      <text y="26" class="output-line">&gt; Languages:  [ Python (Internals), C++, SQL, Bash ]</text>
+      <text y="48" class="output-line">&gt; Tools:      [ Git, VS Code, Vim ]</text>
+      <text y="70" class="output-line">&gt; Core:       [ DSA, Math, Networking, OOPS ]</text>
     </g>
     
-    <!-- ========== COMMAND 2 ========== -->
-    <g class="cmd-group cmd2" transform="translate(0, 110)">
+    <!-- ===== COMMAND 2 ===== -->
+    <g transform="translate(0, 115)">
+      <!-- Static prompt -->
       <text y="0">
         <tspan class="prompt">user@github:~$ </tspan>
       </text>
-      <text y="0" class="cmd-text" x="150">./current_focus</text>
-      <rect x="310" y="-12" width="2" height="16" class="cursor cursor2"/>
+      <!-- Typing command text -->
+      <text y="0" class="cmd-text cmd2-text type2" x="150">./current_focus</text>
+      <rect x="310" y="-11" width="2" height="16" class="cursor cursor2"/>
+      
+      <!-- Output 2 -->
+      <g class="out-group out2">
+        <text y="26" class="output-line">&gt; 1. Competitive Programming (DSA)</text>
+        <text y="48" class="output-line">&gt; 2. AI &amp; Machine Learning</text>
+        <text y="70" class="output-line">&gt; 3. Ethical Hacking &amp; Security</text>
+      </g>
     </g>
     
-    <g class="out-group out2">
-      <text y="26" class="output-text">> 1. Competitive Programming (DSA)</text>
-      <text y="48" class="output-text">> 2. AI &amp; Machine Learning</text>
-      <text y="70" class="output-text">> 3. Ethical Hacking &amp; Security</text>
-    </g>
-    
-    <!-- ========== COMMAND 3 ========== -->
-    <g class="cmd-group cmd3" transform="translate(0, 220)">
+    <!-- ===== COMMAND 3 ===== -->
+    <g transform="translate(0, 230)">
+      <!-- Static prompt -->
       <text y="0">
         <tspan class="prompt">user@github:~$ </tspan>
       </text>
-      <text y="0" class="cmd-text" x="150">./status</text>
-      <rect x="245" y="-12" width="2" height="16" class="cursor cursor3"/>
-    </g>
-    
-    <g class="out-group out3">
-      <text y="26" class="quote-text">> "Coding to understand, not just to execute."</text>
+      <!-- Typing command text -->
+      <text y="0" class="cmd-text cmd3-text type3" x="150">./status</text>
+      <rect x="245" y="-11" width="2" height="16" class="cursor cursor3"/>
+      
+      <!-- Output 3 (quote) -->
+      <g class="out-group out3">
+        <text y="26" class="quote-line">&gt; "Coding to understand, not just to execute."</text>
+      </g>
     </g>
     
   </g>
