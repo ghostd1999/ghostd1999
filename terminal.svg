@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="280" viewBox="0 0 650 280" fill="none">
+  <style>
+    .bg { fill: #0d1117; rx: 8px; }
+    .text { font-family: 'Fira Code', 'Courier New', monospace; font-size: 13px; }
+    .user { fill: #58a6ff; font-weight: bold; }
+    .command { fill: #79c0ff; }
+    .output { fill: #c9d1d9; }
+    .quote { fill: #56e39f; font-style: italic; }
+
+    /* Auto Light/Dark Mode handling inside SVG */
+    @media (prefers-color-scheme: light) {
+      .bg { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1px; }
+      .user { fill: #0969da; }
+      .command { fill: #1a7f37; }
+      .output { fill: #24292f; }
+      .quote { fill: #b02020; }
+    }
+  </style>
+  
+  <rect width="100%" height="280" class="bg"/>
+  
+  <g class="text" transform="translate(20, 35)">
+    <text y="0">
+      <tspan class="user">user@github:~$ </tspan>
+      <tspan class="command">./skills --verbose</tspan>
+    </text>
+    <text y="22" class="output">&gt; Languages:  [ Python (Internals), C++, SQL, Bash ]</text>
+    <text y="40" class="output">&gt; Tools:      [ Git, VS Code, Vim ]</text>
+    <text y="58" class="output">&gt; Core:       [ DSA, Math, Networking, OOPS ]</text>
+    
+    <text y="95">
+      <tspan class="user">user@github:~$ </tspan>
+      <tspan class="command">./current_focus</tspan>
+    </text>
+    <text y="117" class="output">&gt; 1. Competitive Programming (DSA)</text>
+    <text y="135" class="output">&gt; 2. AI &amp; Machine Learning</text>
+    <text y="153" class="output">&gt; 3. Ethical Hacking &amp; Security</text>
+    
+    <text y="190">
+      <tspan class="user">user@github:~$ </tspan>
+      <tspan class="command">./status</tspan>
+    </text>
+    <text y="212" class="quote">&gt; "Coding to understand, not just to execute."</text>
+  </g>
+</svg>
