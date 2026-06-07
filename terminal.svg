@@ -3,6 +3,91 @@
     .bg { fill: #0d1117; rx: 8px; }
     .text { font-family: 'Fira Code', 'Courier New', monospace; font-size: 13px; }
     .user { fill: #58a6ff; font-weight: bold; }
+    .command { fill: #ffffff; font-weight: normal; }
+    .output { fill: #c9d1d9; opacity: 0; animation: fadeIn 0.1s forwards; }
+    .quote { fill: #56e39f; font-style: italic; opacity: 0; animation: fadeIn 0.1s forwards; }
+
+    /* Cursor & Covering Box Style */
+    .cursor { fill: #0d1117; stroke: #ffffff; stroke-width: 2; }
+
+    /* Typing Animations (Moving the cover box to reveal text) */
+    .type-skills { animation: openBox 1.2s steps(17) 0.2s forwards, blink 0.5s step-end infinite; width: 160px; }
+    .type-focus { animation: openBox 1s steps(15) 2.4s forwards, blink 0.5s step-end infinite; width: 140px; }
+    .type-status { animation: openBox 0.6s steps(8) 4.4s forwards, blink 0.5s step-end infinite; width: 90px; }
+
+    /* Output Reveal Timings matched perfectly to typing finish */
+    .out-skills { animation-delay: 1.4s; }
+    .out-focus { animation-delay: 3.4s; }
+    .out-status { animation-delay: 5.0s; }
+
+    @keyframes openBox {
+      to { transform: translateX(100%); width: 0px; display: none; stroke: transparent; }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    @keyframes blink {
+      from, to { stroke-color: transparent; }
+      50% { stroke: #ffffff; }
+    }
+
+    /* Auto Light/Dark Mode handling */
+    @media (prefers-color-scheme: light) {
+      .bg { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1px; }
+      .user { fill: #0969da; }
+      .command { fill: #1f2328; }
+      .output { fill: #24292f; }
+      .quote { fill: #b02020; }
+      .cursor { fill: #f6f8fa; stroke: #1f2328; }
+      @keyframes blink {
+        50% { stroke: #1f2328; }
+      }
+    }
+  </style>
+  
+  <rect width="100%" height="280" class="bg"/>
+  
+  <g class="text" transform="translate(20, 35)">
+    <g>
+      <text y="0">
+        <tspan class="user">user@github:~$ </tspan>
+        <tspan class="command">./skills --verbose</tspan>
+      </text>
+      <rect x="115" y="-12" height="16" class="cursor type-skills" />
+    </g>
+    <text y="22" class="output out-skills">&gt; Languages:  [ Python (Internals), C++, SQL, Bash ]</text>
+    <text y="40" class="output out-skills">&gt; Tools:      [ Git, VS Code, Vim ]</text>
+    <text y="58" class="output out-skills">&gt; Core:       [ DSA, Math, Networking, OOPS ]</text>
+    
+    <g transform="translate(0, 95)">
+      <text y="0">
+        <tspan class="user">user@github:~$ </tspan>
+        <tspan class="command">./current_focus</tspan>
+      </text>
+      <rect x="115" y="-12" height="16" class="cursor type-focus" />
+    </g>
+    <text y="117" class="output out-focus">&gt; 1. Competitive Programming (DSA)</text>
+    <text y="135" class="output out-focus">&gt; 2. AI &amp; Machine Learning</text>
+    <text y="153" class="output out-focus">&gt; 3. Ethical Hacking &amp; Security</text>
+    
+    <g transform="translate(0, 190)">
+      <text y="0">
+        <tspan class="user">user@github:~$ </tspan>
+        <tspan class="command">./status</tspan>
+      </text>
+      <rect x="115" y="-12" height="16" class="cursor type-status" />
+    </g>
+    <text y="212" class="quote out-status">&gt; "Coding to understand, not just to execute."</text>
+  </g>
+</svg>
+
+
+
+<!-- <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="280" viewBox="0 0 650 280" fill="none">
+  <style>
+    .bg { fill: #0d1117; rx: 8px; }
+    .text { font-family: 'Fira Code', 'Courier New', monospace; font-size: 13px; }
+    .user { fill: #58a6ff; font-weight: bold; }
     .command { fill: #79c0ff; }
     .output { fill: #c9d1d9; }
     .quote { fill: #56e39f; font-style: italic; }
@@ -42,4 +127,4 @@
     </text>
     <text y="212" class="quote">&gt; "Coding to understand, not just to execute."</text>
   </g>
-</svg>
+</svg> -->
